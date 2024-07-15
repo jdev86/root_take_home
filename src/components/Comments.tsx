@@ -10,18 +10,17 @@ import {
 } from "@mui/material";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import useAppStore, { Comment } from "../store";
+import useAppStore from "../store";
 import { deepOrange } from "@mui/material/colors";
 import { defaultChatMessageColor } from "../utils/constants";
 import { v4 as uuidv4 } from "uuid";
+import { Comment } from "../types";
 
 export const SuggestionComments = () => {
   const scrollRef = useRef<null | HTMLLIElement>(null);
 
   const [comments, setComments] = useState<Comment[]>([]);
   const [comment, setComment] = useState<string>("");
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const { getSuggestion, selectedSuggestion, addComment, getComments, user } =
     useAppStore();
 
@@ -49,7 +48,7 @@ export const SuggestionComments = () => {
     if (!comment || !selectedSuggestion) return;
     const dateTime = new Date();
 
-    const newComment = {
+    const newComment: Comment = {
       id: uuidv4(),
       userId: user.id,
       userName: user.name,
@@ -57,9 +56,9 @@ export const SuggestionComments = () => {
       createdDateTime: `${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`,
     };
 
+    addComment(selectedSuggestion, newComment);
     const comments = getComments(selectedSuggestion) || [];
 
-    addComment(selectedSuggestion, newComment);
     setComments(comments);
     setComment("");
   }, [selectedSuggestion, comment, getComments, addComment, user]);
@@ -77,7 +76,7 @@ export const SuggestionComments = () => {
         overflow={"auto"}
         bgcolor="rgb(3,1,39,0.3)"
       >
-        {!comment.length ? (
+        {!comments.length ? (
           <Box height={"100%"} color={"#fff"} padding={2}>
             No comments yet! Use textbox below to add one!
           </Box>

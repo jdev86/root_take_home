@@ -2,8 +2,15 @@ import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { categories } from "../utils/constants";
-import useAppStore, { Suggestion } from "../store";
-import { Divider, TextField, Grid, ListItemButton, Stack } from "@mui/material";
+import useAppStore from "../store";
+import {
+  Divider,
+  TextField,
+  Grid,
+  ListItemButton,
+  Stack,
+  ListItem,
+} from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { loremIpsum, name } from "react-lorem-ipsum";
@@ -109,6 +116,7 @@ export const SuggestionList = () => {
           height: "83vh",
           borderRadius: "1.5rem",
           "& ul": { padding: 0 },
+          width: "100%",
         }}
         subheader={<li />}
       >
@@ -116,32 +124,30 @@ export const SuggestionList = () => {
           { id: 0, name: categories[0] },
           { id: 1, name: categories[1] },
         ].map((section) => (
-          <li key={`section-${section.id}`}>
-            <ul>
+          <ListItem key={`section-${section.id}`}>
+            <List sx={{ width: "100%" }}>
               <ListSubheader sx={{ bgcolor: "#172436", color: "aquamarine" }}>
                 {section.name}
               </ListSubheader>
-              {determineSuggestionsDisplayed(section.id)?.map(
-                (item: Suggestion) => (
-                  <ListItemButton
-                    key={`item-${section.id}-${item.id}`}
-                    onClick={() => setSelectedSuggestion(item.id)}
-                    sx={{ cursor: "pointer" }}
-                    selected={determineSuggestionSelected(item.id)}
-                    style={{ opacity: "100% !important" }}
-                  >
-                    <ListItemText
-                      primary={item.text}
-                      secondary={item.createdDateTime}
-                      secondaryTypographyProps={{
-                        color: "#D4D4D4",
-                      }}
-                    />
-                  </ListItemButton>
-                )
-              )}
+              {determineSuggestionsDisplayed(section.id)?.map((item) => (
+                <ListItemButton
+                  key={`item-${section.id}-${item.id}`}
+                  onClick={() => setSelectedSuggestion(item.id)}
+                  sx={{ cursor: "pointer" }}
+                  selected={determineSuggestionSelected(item.id)}
+                  style={{ opacity: "100% !important" }}
+                >
+                  <ListItemText
+                    primary={item.text}
+                    secondary={item.createdDateTime}
+                    secondaryTypographyProps={{
+                      color: "#D4D4D4",
+                    }}
+                  />
+                </ListItemButton>
+              ))}
               {section.id === 0 && (
-                <Stack>
+                <Stack sx={{ marginTop: 2 }}>
                   <Divider sx={{ borderColor: "aquamarine" }} />
                   <TextField
                     id="standard-text"
@@ -174,8 +180,8 @@ export const SuggestionList = () => {
                   <Divider sx={{ borderColor: "aquamarine" }} />
                 </Stack>
               )}
-            </ul>
-          </li>
+            </List>
+          </ListItem>
         ))}
       </List>
     </Grid>

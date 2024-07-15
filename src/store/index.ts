@@ -2,24 +2,7 @@ import { create } from "zustand";
 import { defaultSuggestions } from "./defaultData";
 import { v4 as uuidv4 } from "uuid";
 import { name } from "react-lorem-ipsum";
-
-export type User = { id: string; name: string };
-
-export type Comment = {
-  id: string;
-  userId: string;
-  userName: string;
-  createdDateTime: string;
-  text: string;
-};
-
-export type Suggestion = {
-  id: string;
-  text: string;
-  userId: string;
-  createdDateTime: string;
-  comments: Comment[];
-};
+import { Suggestion, User, Comment } from "../types";
 
 export type AppStore = {
   user: {
