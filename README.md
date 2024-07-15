@@ -26,7 +26,9 @@ User is able to add comments to any suggestion by selecting a suggestion and usi
 
 New suggestions are randomized and added to the app every 5 seconds to a maximum of 10.
 
-Additional features/functionality that can be added:
-Create theme
-Allow editing of suggestions and/or comments
-Authentication
+### Additional features/functionality that can be added:
+
+- Add Storybook
+- Add tests for components
+- Allow editing of suggestions and/or comments
+- Authentication
