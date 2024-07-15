@@ -7,11 +7,12 @@ export const Dashboard = () => {
     <Box
       id="middle-content"
       style={{ display: "flex" }}
-      height={"98vh"}
-      width={"100vw"}
+      height={"97vh"}
+      width={"100%"}
       paddingTop={10}
       paddingLeft={5}
       paddingRight={5}
+      paddingBottom={10}
     >
       <SuggestionList />
       <SuggestionComments />

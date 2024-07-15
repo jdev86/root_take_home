@@ -64,12 +64,7 @@ export const SuggestionComments = () => {
   }, [selectedSuggestion, comment, getComments, addComment, user]);
 
   return (
-    <Box
-      width={"100%"}
-      height={"91%"}
-      border="1px solid grey"
-      borderRadius="1.5rem"
-    >
+    <Box border="1px solid grey" borderRadius="1.5rem" width={"100%"}>
       <Grid
         borderRadius="1.5rem"
         height={"100%"}

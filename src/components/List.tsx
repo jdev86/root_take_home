@@ -110,10 +110,10 @@ export const SuggestionList = () => {
         sx={{
           bgcolor: "rgb(3,1,39,0)",
           border: "1px solid grey",
+          height: "100%",
           color: "whitesmoke",
           position: "relative",
           overflow: "auto",
-          height: "83vh",
           borderRadius: "1.5rem",
           "& ul": { padding: 0 },
           width: "100%",
